@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Tables>
+  <table ID="1"  runat="server"  Width="100%" Height="100%"  Name="דוח תמיכות ללא שיוך ספק"
+        Title="דוח תמיכות ללא שיוך ספק" SubTitle=""
+        DataSourceID="BEBook10" Url="" Target="_blank"
+        Query =" with CTE (formatedDay)
+    as
+    (
+    select  case when datename(dw,getdate())='sunday' then 'א' 
+    when datename(dw,getdate())='monday' then 'ב'
+    when datename(dw,getdate())='tuesday' then 'ג'
+    when datename(dw,getdate())='wednesday' then 'ד'
+    when datename(dw,getdate())='thursday' then 'ה'
+    when datename(dw,getdate())='friday' then 'ו' end  
+    )
+    select f.framename  [FrameName] ,c2.name [SupporterJob],			 
+	  'Supporter' = case  when d.supportername like N'%''%' then REPLACE(d.supportername,'''','')   
+		when d.supportername is null then 'לתמיכה לא שייכו ספק' 
+		else REPLACE(REPLACE(d.supporterName , CHAR(13), ''), CHAR(10), '')
+		end , 
+    count(w.eventid) [NumOfSupports]
+    FROM [Book10].[dbo].[TT_WP_Details]  d
+			left outer join (select id,wwid,formid,eventid,customerid,frm_catid,DetailsId,Comment,Status,PeriodKey,LoadTime,UserId ,dayid
+							from book10.dbo.tt_wp_week) w on d.eventid=w.EventID and d.formid=w.FormID and isnull(d.detailsid,d.id)=w.DetailsId
+			left outer join book10.dbo.tt_wp wp on wp.eventid=d.eventid and wp.formid=d.formid and isnull(wp.wpid,wp.id)=d.wpid 
+			left outer join B10Sec.dbo.tt_classes c on c.id =wp.rangeid
+			left outer join B10Sec.dbo.tt_classes c1 on c1.id =wp.subjectid
+			left outer join Book10_21.dbo.customerlist cl on cl.customerid=d.customerid
+			left outer join Book10_21.dbo.framelist f on f.frameid= d.frm_catId
+			left outer join B10Sec.dbo.tt_classes c2 on c2.id=d.helperId 
+			where f.framename is not null and frameid not in (122) and w.dayid=cast((select formatedDay from CTE) as nvarchar) and d.supporterName is null
+    group by f.framename, d.supportername,c2.name
+	order by supportername">
+  </table>
+  
+<table ID="2"  runat="server"  Width="100%" Height="100%"  Name="דוח ספקים"
+        Title="דוח תמיכות לפי ספקים" SubTitle=""
+        DataSourceID="BEBook10" Url="" Target="_blank"
+        Query ="with CTE (formatedDay)
+    as
+    (
+    select  case when datename(dw,getdate())='sunday' then 'א' 
+    when datename(dw,getdate())='monday' then 'ב'
+    when datename(dw,getdate())='tuesday' then 'ג'
+    when datename(dw,getdate())='wednesday' then 'ד'
+    when datename(dw,getdate())='thursday' then 'ה'
+    when datename(dw,getdate())='friday' then 'ו' end  
+    )
+    select f.framename  [FrameName] ,c2.name [SupporterJob],			 
+	'Supporter' = case  when d.supportername like N'%''%' then REPLACE(d.supportername,'''','')   
+		when d.supportername is null then 'לתמיכה לא שייכו ספק' 
+		else REPLACE(REPLACE(d.supporterName , CHAR(13), ''), CHAR(10), '')
+		end , 
+    count(w.eventid) [NumOfSupports]
+    FROM [Book10].[dbo].[TT_WP_Details]  d
+			left outer join (select id,wwid,formid,eventid,customerid,frm_catid,DetailsId,Comment,Status,PeriodKey,LoadTime,UserId ,dayid
+							from book10.dbo.tt_wp_week) w on d.eventid=w.EventID and d.formid=w.FormID and isnull(d.detailsid,d.id)=w.DetailsId
+			left outer join book10.dbo.tt_wp wp on wp.eventid=d.eventid and wp.formid=d.formid and isnull(wp.wpid,wp.id)=d.wpid 
+			left outer join B10Sec.dbo.tt_classes c on c.id =wp.rangeid
+			left outer join B10Sec.dbo.tt_classes c1 on c1.id =wp.subjectid
+			left outer join Book10_21.dbo.customerlist cl on cl.customerid=d.customerid
+			left outer join Book10_21.dbo.framelist f on f.frameid= d.frm_catId
+			left outer join B10Sec.dbo.tt_classes c2 on c2.id=d.helperId 
+			where f.framename is not null and frameid not in (122) and w.dayid=cast((select formatedDay from CTE) as nvarchar) and d.supporterName is not null
+    group by f.framename, d.supportername,c2.name
+	order by supportername ">
+</table>
+  
+
+  <table ID="3"  runat="server"  Width="100%" Height="100%"  Name="תוכניות תמיכה לתלמיד "
+         Title="תוכניות תמיכה לתלמיד " SubTitle=""
+         DataSourceID="BEBook10" Url="" Target="_blank"
+         Query ="SELECT
+                case when c1.Name IS NULL then N'לא הזינו כיתה' ELSE C1.NAME end AS Class,
+                N'יש' [QF],
+                p.CustomerId CustNum ,cl.CustLastNAme,cl.CustFirstNAme     FROM
+                (select * from
+                Book10_21.dbo.TT_CustomerList cl where cl.CustomerId in (select CustomerID from Book10.dbo.TT_WP))p
+                left outer join Book10_21.dbo.CustomerList cl on cl.CustomerId = p.customerid
+                left outer join Book10_21.dbo.FrameList  f on p.FrameID = f.FrameID
+                left outer join Book10_21.dbo.ServiceList s on  f.ServiceID= s.ServiceID
+                LEFT OUTER JOIN Book10.DBO.TT_MP mp ON mp.CustomerId=p.CustomerID
+                LEFT OUTER JOIN B10Sec.dbo.TT_Classes c on c.Id=mp.LayerId
+                LEFT OUTER JOIN B10Sec.dbo.TT_Classes c1 on c1.Id=mp.ClassId
+                where f.frameID =118 and f.ServiceTypeID=3  and f.frameid in
+                (select FrameID from Book10.dbo.p0v_UserFrameList where UserID=864 )
+                --group by c1.Name,f.FrameId,f.framename,c.name
+                union
+                SELECT
+                case when c1.Name IS NULL then N'לא הזינו כיתה' ELSE C1.NAME end AS Class
+                , N'אין' [QF],
+                p.CustomerId CustNum,cl.CustLastNAme,cl.CustFirstNAme
+                FROM
+                (select * from
+                Book10_21.dbo.TT_CustomerList cl where cl.CustomerId not in (select CustomerID from Book10.dbo.TT_WP))p
+                left outer join Book10_21.dbo.CustomerList cl on cl.CustomerId = p.customerid
+                left outer join Book10_21.dbo.FrameList  f on p.FrameID = f.FrameID
+                left outer join Book10_21.dbo.ServiceList s on  f.ServiceID= s.ServiceID
+                LEFT OUTER JOIN Book10.DBO.TT_MP mp ON mp.CustomerId=p.CustomerID
+                LEFT OUTER JOIN B10Sec.dbo.TT_Classes c on c.Id=mp.LayerId
+                LEFT OUTER JOIN B10Sec.dbo.TT_Classes c1 on c1.Id=mp.ClassId
+                where f.frameID =118 and f.ServiceTypeID=3   and f.frameid in
+                (select FrameID from Book10.dbo.p0v_UserFrameList where UserID=864 )">
+  </table>
+  
+  <table ID="4"  runat="server"  Width="100%" Height="100%"  Name="דוח תמיכות  לספקים"
+        Title="דוח תמיכות לספקים" SubTitle=""
+        DataSourceID="BEBook10" Url="" Target="_blank"
+        Query ="select REPLACE(f.framename,'''','') FrameName,isnull(cl.Name,'ללא תפקיד') Job,
+				          isnull(REPLACE(REPLACE(REPLACE(det.supportername,'''','') , CHAR(13),'-'), CHAR(10),'-'),'ללא שם ספק') Supporter,
+				          count(isnull(det.id,det.detailsid)) Count                
+                  from (select * from book10.dbo.TT_WP_Details  where loadtime > '01.09.2014') det 
+                  left outer join (select * from  book10_21.dbo.framelist ) f on f.frameid = det.frm_CatId
+				          left outer join b10sec.dbo.tt_classes cl on cl.id=det.helperid
+                  where f.frameid not in (122) 
+                  group by f.framename, det.supportername,cl.Name
+				  order by f.framename,cl.Name, det.supportername">
+  </table>
+</Tables>

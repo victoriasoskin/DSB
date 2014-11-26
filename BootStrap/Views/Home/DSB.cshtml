@@ -1,0 +1,346 @@
+﻿@model System.Data.DataTable
+
+@using System.Data;
+@{
+    ViewBag.Title = "DSB";
+}
+<link href="~/Content/bootstrap-rtl.css" rel="stylesheet" />
+<link href="~/Content/DSB.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-rtl.js"></script>
+<script src="~/Scripts/jquery.Scroller-1.0.min.js"></script>
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+
+<script src="~/Scripts/jquery.colorbox-min.js"></script>
+<script src="~/Scripts/Services.js"></script>
+
+
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<script src="~/Scripts/json-to-table.js"></script>
+@*<script src="~/Scripts/jquery.dataTables.js"></script>
+    <link href="~/Scripts/jquery.dataTables.css" rel="stylesheet" />*@
+
+
+<ul class="nav nav-pills">
+    <li class="active"><a href="#Charts" data-toggle="pill">גרפים</a></li>
+    <li><a href="#Tables" data-toggle="pill">דוחות</a></li>
+    <li><a href="#SysMessages" data-toggle="pill">הודעות מערכת</a></li>
+</ul>
+<div class="tab-content">
+    <div class="jumbotron tab-pane active" id="Charts">
+        <div class="container" id="DSBContainer">
+            <div class="row" id="small">
+
+                <div id="myCarousel" class="carousel slide" data-interval="false" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="active item" size="small">
+                            <div class="col-md-4" sourcedivid="4" sourcedataid="5" sourceviewid="1">
+                                <a class="maintenance" href="~/DSB?DivId=3"><h5 id="Div3Span" class="fa fa-gear" data-toggle="tooltip" data-placement="right" title="הגדרות "></h5></a>
+                                <a class="enlarge"><h5 id="ZoomDiv3" activediv="Div3" class="fa fa-arrows-alt" data-toggle="tooltip" data-placement="right" title="הגדל "></h5></a>
+                                <a class="print"><h5 id="Div3Span" class="fa fa-print" activediv="Div3" data-toggle="tooltip" data-placement="right" title="הדפסה"></h5></a>
+                                <a class="toExcel"><h5 id="ExportToExcelDiv3" activediv="Div3" class="fa fa-file-excel-o" data-toggle="tooltip" data-placement="right" title="גרף לאקסל"></h5></a>
+                                <a class="DetToExcel"><h5 id="ExportDetailsToExcelDiv3" activediv="Div3" class="fa fa-eye" data-toggle="tooltip" data-placement="right" title="דוח שמי לאקסל"></h5></a>
+                                <div id="Div3" size="SmallImage" class="small" sourcedivid="4" sourcedataid="5" sourceviewid="1"></div>
+                            </div>
+                            <div class="col-md-4" sourcedivid="" sourcedataid="" sourceviewid="">
+                                <a class="maintenance" href="~/DSB?DivId=4"><h5 id="Div4Span" class="fa fa-gear" data-toggle="tooltip" data-placement="right" title="הגדרות"></h5></a>
+                                <a class="enlarge"><h5 id="ZoomDiv4" activediv="Div4" class="fa fa-arrows-alt" data-toggle="tooltip" data-placement="right" title="הגדל "></h5></a>
+                                <a class="print"><h5 id="Div4Span" class="fa fa-print" activediv="Div4" data-toggle="tooltip" data-placement="right" title="הדפסה"></h5></a>
+                                <a class="toExcel"><h5 id="ExportToExcelDiv4" activediv="Div4" class="fa fa-file-excel-o" data-toggle="tooltip" data-placement="right" title="גרף לאקסל"></h5></a>
+                                <a class="DetToExcel"><h5 id="ExportDetailsToExcelDiv4" activediv="Div4" class="fa fa-eye" data-toggle="tooltip" data-placement="right" title="דוח שמי לאקסל"></h5></a>
+                                <div id="Div4" size="SmallImage" class="small"></div>
+                            </div>
+                            <div class="col-md-4" sourcedivid="" sourcedataid="" sourceviewid="">
+                                <a class="maintenance" href="~/DSB?DivId=5"><h5 id="Div5Span" class="fa fa-gear" data-toggle="tooltip" data-placement="right" title="הגדרות"></h5></a>
+                                <a class="enlarge"><h5 id="ZoomDiv5" activediv="Div5" class="fa fa-arrows-alt" data-toggle="tooltip" data-placement="right" title="הגדל "></h5></a>
+                                <a class="print"><h5 id="Div5Span" class="fa fa-print" activediv="Div5" data-toggle="tooltip" data-placement="right" title="הדפסה"></h5></a>
+                                <a class="toExcel"><h5 id="ExportToExcelDiv5" activediv="Div5" class="fa fa-file-excel-o" data-toggle="tooltip" data-placement="right" title="לאקסל"></h5></a>
+
+                                <div id="Div5" size="SmallImage" class="small">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" size="small">
+                            <div class="col-md-4">
+                                <a class="maintenance" href="~/DSB?DivId=6"><h5 id="Div6Span" class="fa fa-gear" data-toggle="tooltip" data-placement="right" title="הגדרות"></h5></a>
+                                <a class="enlarge"><h5 id="ZoomDiv6" activediv="Div6" class="fa fa-arrows-alt" data-toggle="tooltip" data-placement="right" title="הגדל "></h5></a>
+                                <a class="print"><h5 id="Div6Span" class="fa fa-print" activediv="Div6" data-toggle="tooltip" data-placement="right" title="הדפסה"></h5></a>
+                                <a class="toExcel"><h5 id="ExportToExcelDiv6" activediv="Div6" class="fa fa-file-excel-o" data-toggle="tooltip" data-placement="right" title="לאקסל"></h5></a>
+                                <div id="Div6" size="SmallImage" class="small"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <a class="maintenance" href="~/DSB?DivId=7"><h5 id="Div7Span" class="fa fa-gear" data-toggle="tooltip" data-placement="right" title="הגדרות"></h5></a>
+                                <a class="enlarge"><h5 id="ZoomDiv7" activediv="Div7" class="fa fa-arrows-alt" data-toggle="tooltip" data-placement="right" title="הגדל "></h5></a>
+                                <a class="print"><h5 id="Div7Span" class="fa fa-print" activediv="Div7" data-toggle="tooltip" data-placement="right" title="הדפסה"></h5></a>
+                                <a class="toExcel"><h5 id="ExportToExcelDiv7" activediv="Div7" class="fa fa-file-excel-o" data-toggle="tooltip" data-placement="right" title="לאקסל"></h5></a>
+                                <div id="Div7" size="SmallImage" class="small"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <a class="maintenance" href="~/DSB?DivId=8"><h5 id="Div8Span" class="fa fa-gear" data-toggle="tooltip" data-placement="right" title="הגדרות"></h5></a>
+                                <a class="enlarge"><h5 id="ZoomDiv8" activediv="Div8" class="fa fa-arrows-alt" data-toggle="tooltip" data-placement="right" title="הגדל "></h5></a>
+                                <a class="print"><h5 id="Div8Span" class="fa fa-print" activediv="Div8" data-toggle="tooltip" data-placement="right" title="הדפסה"></h5></a>
+                                <a class="toExcel"><h5 id="ExportToExcelDiv8" activediv="Div8" class="fa fa-file-excel-o" data-toggle="tooltip" data-placement="right" title="לאקסל"></h5></a>
+                                <div id="Div8" size="SmallImage" class="small"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @****************************************************************************************************************************
+                                                                                Big Qubes
+                    *****************************************************************************************************************************@
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+
+            </div>
+        </div>
+        <div class="row" id="large" size="large">
+            <div class="col-md-6 container">
+                <div id="Div1" style="height:400px" size="LargeImage">
+
+                </div>
+            </div>
+            <div class="col-md-6 container text-center">
+                <div id="Div2" style="height:400px" size="LargeImage">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron tab-pane" id="Tables">
+        @* *****************************************************************************************@
+        <div class="container" id="TablesContainer">
+            <div class="row">
+
+                <div id="myTablesCarousel" class="carousel slide" data-interval="false" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="active item">
+                            <div class="col-lg-6">
+                                <a class="maintenance" href="~/DSB?TableDivId=1"><h5 id="TableDiv1Span" class="fa fa-gear" data-toggle="tooltip" data-placement="right" title="הגדרות"></h5></a>
+                                <a class="enlarge"><h5 id="ZoomTableDiv1" activediv="TableDiv1" class="fa fa-arrows-alt" data-toggle="tooltip" data-placement="right" title="הגדל "></h5></a>
+                                <a class="print"><h5 id="TableDiv1Span" class="fa fa-print" activediv="TableDiv1" data-toggle="tooltip" data-placement="right" title="הדפסה"></h5></a>
+                                <a class="toExcel"><h5 id="ExportToExcelTableDiv1" activediv="TableDiv1" class="fa fa-file-excel-o" data-toggle="tooltip" data-placement="right" title="לאקסל"></h5></a>
+                                <input type="hidden" id="TableDiv1HiddenField" value="@ViewBag.currentDaySupportsHtmlTable" />
+                                <div id="TableDiv1" class="tables" sourcedivid="1" sourcedataid="2" sourceviewid="2"></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <a class="maintenance" href="~/DSB?DivId=5"><h5 id="TableDiv2Span" class="fa fa-gear" data-toggle="tooltip" data-placement="right" title="הגדרות"></h5></a>
+                                <a class="enlarge"><h5 id="ZoomTableDiv2" activediv="TableDiv2" class="fa fa-arrows-alt" data-toggle="tooltip" data-placement="right" title="הגדל "></h5></a>
+                                <a class="print"><h5 id="TableDiv2Span" class="fa fa-print" activediv="TableDiv2" data-toggle="tooltip" data-placement="right" title="הדפסה"></h5></a>
+                                <a class="toExcel"><h5 id="ExportToExcelTableDiv2" activediv="TableDiv2" class="fa fa-file-excel-o" data-toggle="tooltip" data-placement="right" title="לאקסל"></h5></a>
+                                <input type="hidden" id="TableDiv2HiddenField" value="@ViewBag.SupportersList" />
+                                <div id="TableDiv2" sourcedivid="2" sourcedataid="1" sourceviewid="2">
+                                    <table class="table table-responsive table-hover table-condensed table-striped" id="SupportersTable">
+                                        <thead class="HeaderStyle">
+                                            <tr id="headTr">
+                                                <th>איזור</th>
+                                                <th>מסגרת</th>
+                                                <th>כמות</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Row 1</td>
+                                                <td>Row 2</td>
+                                                <td>Row 3</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="item">
+                            <div class="col-lg-6">
+                                <a class="maintenance" href="~/DSB?TableDivId=1"><h5 id="TableDiv1Span" class="fa fa-gear" data-toggle="tooltip" data-placement="right" title="הגדרות"></h5></a>
+                                <a class="enlarge"><h5 id="ZoomTableDiv3" activediv="TableDiv3" class="fa fa-arrows-alt" data-toggle="tooltip" data-placement="right" title="הגדל "></h5></a>
+                                <a class="print"><h5 id="TableDiv3Span" class="fa fa-print" activediv="TableDiv3" data-toggle="tooltip" data-placement="right" title="הדפסה"></h5></a>
+                                <a class="toExcel"><h5 id="ExportToExcelTableDiv3" activediv="TableDiv3" class="fa fa-file-excel-o" data-toggle="tooltip" data-placement="right" title="לאקסל"></h5></a>
+                                <input type="hidden" id="TableDiv3HiddenField"  />
+                                <div id="TableDiv3" class="tables" sourcedivid="3" sourcedataid="2" sourceviewid="2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>@*closes carousel div*@
+
+                <a class="carousel-control left" href="#myTablesCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="carousel-control right" href="#myTablesCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+
+            </div> @*closes row div*@
+
+            <div id="selectedDataDiv">
+                @* this div displays data after selection on the upper divs *@
+
+            </div>
+        </div>
+    </div>
+</div>
+@****************************************************************************************************@
+<img id="loadIndicator" src="~/Img/ajax-loader.gif" />
+<div id="ZoomDivContainer" sourcedivid="" sourcedataid="" sourceviewid="">
+    <div class="btn-group">
+        <a class="btn btn-default" href="#"><i class="fa fa-eye" title="דוח שמי לאקסל" activediv="ZoomDivContainer"></i></a>
+        <a class="btn btn-default" href="#" onclick="Print();"><i class="fa fa-print" title="הדפסה"></i></a>
+        <a class="btn btn-default" href="#"><i class="fa fa-file-excel-o" id="ActiveZoomDivContainer" title="הוצאה לטבלת אקסל" activediv="ZoomDivContainer"></i></a>
+        <a class="btn btn-default" href="#"><i class="glyphicon glyphicon-remove-circle" title="סגור" activediv="ZoomDivContainer"></i></a>
+    </div>
+    <input type="hidden" id="hiddenQuery" />
+    <div id="Zooming">  </div>
+</div>
+@*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
+<script>
+    var heightSmall = 300;
+    var widthSmall = 300;
+    var heightLarge = 400;
+    var widthLarge = 505;
+    $("#Div1").load('/grf.aspx?id=' + @ViewBag.Div1Container +'&width=' + widthLarge + '&height=' + heightLarge);
+    $("#Div2").load('/grf.aspx?id=' + @ViewBag.Div2Container +'&width=' + widthLarge + '&height=' + heightLarge);
+    $("#Div3").load('/grf.aspx?id=' + @ViewBag.Div3Container +'&width=' + widthSmall + '&height=' + heightSmall);
+    $("#Div4").load('/grf.aspx?id=' + @ViewBag.Div4Container +'&width=' + widthSmall + '&height=' + heightSmall);
+    $("#Div5").load('/grf.aspx?id=' + @ViewBag.Div5Container +'&width=' + widthSmall + '&height=' + heightSmall);
+    $("#Div6").load('/grf.aspx?id=' + @ViewBag.Div6Container +'&width=' + widthSmall + '&height=' + heightSmall);
+    $("#Div7").load('/grf.aspx?id=' + @ViewBag.Div7Container +'&width=' + widthSmall + '&height=' + heightSmall);
+    $("#Div8").load('/grf.aspx?id=' + @ViewBag.Div8Container +'&width=' + widthSmall + '&height=' + heightSmall);
+    $("#Div9").load('/grid.aspx?id=1' + '&width=' + widthSmall + '&height=' + heightSmall);
+
+    $(function () {
+        $("#Div1,#Div2,#Div3,#Div4,#Div5,#Div6,#Div7,#Div8").draggable
+        ({
+            start: handleDragStart
+            //cursor: 'move'
+        });
+
+        $("#Div1,#Div2,#Div3,#Div4,#Div5,#Div6,#Div7,#Div8").droppable
+            ({
+                drop: handleDropEvent,
+                tolerance: "pointer"
+            });
+    });
+    var source = "";
+    var target = "";
+    function handleDragStart(event, ui) {
+        var temp = "#" + $(this).attr("id");
+        source = "#" + $(this).attr("id");
+    }
+    function handleDropEvent(event, ui) {
+        if (ui.draggable.element !== undefined) {
+            ui.draggable.element.droppable('enable');
+        }
+        target = "#" + $(this).attr("id");
+        swapTiles(source, target);
+        //ui.draggable.position({ of: $(this), my: 'left top', at: 'left top' });
+    }
+
+    $(document).ready(function () {
+        $("#Div1").attr('sourcedivid',@ViewBag.SourceDiv1).attr('sourcedataid',@ViewBag.Div1Container).attr('sourceviewid',1);
+        $("#Div2").attr('sourcedivid',@ViewBag.SourceDiv2).attr('sourcedataid',@ViewBag.Div2Container).attr('sourceviewid',1);
+        $("#Div3").attr('sourcedivid',@ViewBag.SourceDiv3).attr('sourcedataid',@ViewBag.Div3Container).attr('sourceviewid',1);
+        $("#Div4").attr('sourcedivid',@ViewBag.SourceDiv4).attr('sourcedataid',@ViewBag.Div4Container).attr('sourceviewid',1);
+        $("#Div5").attr('sourcedivid',@ViewBag.SourceDiv5).attr('sourcedataid',@ViewBag.Div5Container).attr('sourceviewid',1);
+        $("#Div6").attr('sourcedivid',@ViewBag.SourceDiv6).attr('sourcedataid',@ViewBag.Div6Container).attr('sourceviewid',1);
+        $("#Div7").attr('sourcedivid',@ViewBag.SourceDiv7).attr('sourcedataid',@ViewBag.Div7Container).attr('sourceviewid',1);
+        $("#Div8").attr('sourcedivid',@ViewBag.SourceDiv8).attr('sourcedataid',@ViewBag.Div8Container).attr('sourceviewid',1);
+        $('.test').css('background-color', 'red');
+
+        $("#loadIndicator").hide();
+        $("#ZoomDivContainer").hide();
+
+        $('#myCarousel').carousel()
+        {
+            easing: 'linear';
+            animation: 750;
+            speed: 700;
+            scroll: 1;
+            wrap: 'circular';
+            cycle: true;
+        };
+
+        $('body').css('charset', 'utf-8');
+        $('.fa-arrows-alt').hover(function () { $(".fa-arrows-alt").css("cursor", "pointer") }).click(function () {
+            var DivName = "#" + $(this).attr('activeDiv');
+            Zoom(DivName);
+            $("#ZoomDivContainer").show();
+        });
+        $('.fa-file-excel-o').hover(function () { $(".fa-file-excel-o").css("cursor", "pointer") }).click(function () {
+            var DivName = "#" + $(this).attr('activeDiv');
+            alert("****" + DivName);
+            ExportChartToExcel(DivName,1);//1= we need reqular query
+        });
+        $('.fa-eye').hover(function () { $(".fa-eye").css("cursor", "pointer") }).click(function () {
+            var DivName = "#" + $(this).attr('activeDiv');
+            alert("****" + DivName);
+            ExportChartToExcel(DivName,2); // 2= we need detailed query
+        });
+        $(".carousel-control").css('width', '10%');
+        $(".glyphicon-remove-circle").click(function () {
+            graphData={
+
+                SourceDivId: $("#Zooming").attr('sourceDivId'),
+                SourceDataId: $("#Zooming").attr('sourceDataId'),
+                ViewId: $("#Zooming").attr('sourceViewId'),
+                UserId:864
+            }
+            UpdateData(graphData);
+            $("#ZoomDivContainer").hide();
+
+            $("body").css({ 'opacity': '1' })
+        });
+        $(function () {
+            var test='<table><thead><tr><th>FrameName</th><th>Supporter</th><th>DayName</th><th>NumOfSupports</th></tr></thead><tbody><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>אין מידע</td><td>ד</td><td>5</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>אבי</td><td>ד</td><td>6</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>אוסנת</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>אחמד</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>אנה</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>אסף</td><td>ד</td><td>5</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>אסף או ניהאד</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>אסף וניהאד</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>גני</td><td>ד</td><td>4</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>גני וגניה </td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>גניה וגני</td><td>ד</td><td>4</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>דב</td><td>ד</td><td>12</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>דור </td><td>ד</td><td>12</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>דור איגלה</td><td>ד</td><td>28</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>דורון</td><td>ד</td><td>9</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>דיויד</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>דייויד</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>דינה</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>דינה נוי</td><td>ד</td><td>3</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>הגר</td><td>ד</td><td>37</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>הגר ונעה</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>הדס</td><td>ד</td><td>4</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>הדס ויערה</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>חן</td><td>ד</td><td>4</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>חן או תניא</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>טניה</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>ינון</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>יעל</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>לואי</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>מאור</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>מדריך DND</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>מדריך ימאות</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>מוחמד</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>מירב</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>נועה </td><td>ד</td><td>7</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>נטע</td><td>ד</td><td>11</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>ניצה </td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>ניצה - רואן </td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>ננסי</td><td>ד</td><td>17</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>נעה</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>סעד</td><td>ד</td><td>6</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>עבד</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>עדי</td><td>ד</td><td>6</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>עדי מטפלת</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>עידית</td><td>ד</td><td>4</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>עידת</td><td>ד</td><td>3</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>רואן</td><td>ד</td><td>13</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>רווי</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>רוויטל</td><td>ד</td><td>4</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>רויטל </td><td>ד</td><td>5</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>שגיא</td><td>ד</td><td>13</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>שירלי</td><td>ד</td><td>3</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>שרון</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>שרון ואחמד</td><td>ד</td><td>3</td></tr><tr><td>בית ספר בית אקשטיין,  בית ינאי </td><td>תניא או חן</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, אופקים</td><td>אין מידע</td><td>ד</td><td>16</td></tr><tr><td>בית ספר בית אקשטיין, אופקים</td><td>דליה</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, אופקים</td><td>דרור</td><td>ד</td><td>5</td></tr><tr><td>בית ספר בית אקשטיין, אופקים</td><td>טל דגן</td><td>ד</td><td>5</td></tr><tr><td>בית ספר בית אקשטיין, אופקים</td><td>יונה</td><td>ד</td><td>6</td></tr><tr><td>בית ספר בית אקשטיין, אופקים</td><td>נבו</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, אופקים</td><td>נופית</td><td>ד</td><td>8</td></tr><tr><td>בית ספר בית אקשטיין, אור יהודה</td><td>אלינה גולדמן</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, אור יהודה</td><td>דריה אמיתי</td><td>ד</td><td>8</td></tr><tr><td>בית ספר בית אקשטיין, אור יהודה</td><td>חנה מגנגי</td><td>ד</td><td>5522</td></tr><tr><td>בית ספר בית אקשטיין, אור יהודה</td><td>חנה מגנגי</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, אור יהודה</td><td>יובל מכביסטית</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, אור יהודה</td><td>מאיה</td><td>ד</td><td>6</td></tr><tr><td>בית ספר בית אקשטיין, אור יהודה</td><td>מחנכת כיתה</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, אור יהודה</td><td>מיה גרינר</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, אור יהודה</td><td>מיכל דינור</td><td>ד</td><td>3</td></tr><tr><td>בית ספר בית אקשטיין, אור יהודה</td><td>עדי/קמה</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, אור יהודה</td><td>עובדיה</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, אור יהודה</td><td>עמית בוטבול</td><td>ד</td><td>12</td></tr><tr><td>בית ספר בית אקשטיין, אור יהודה</td><td>ענבל</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, אור יהודה</td><td>ענבל גופר</td><td>ד</td><td>6</td></tr><tr><td>בית ספר בית אקשטיין, אור יהודה</td><td>ענת מזרחי</td><td>ד</td><td>4</td></tr><tr><td>בית ספר בית אקשטיין, אור יהודה</td><td>שרון</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>אין מידע</td><td>ד</td><td>14</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>אילנה</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>אסתי</td><td>ד</td><td>21</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>אערידי רים</td><td>ד</td><td>17</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>אערידי רים -גליה</td><td>ד</td><td>3</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>אערידי רים גליה דוידוביץ</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>אערידי רים+גליה</td><td>ד</td><td>5</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>אערידי רים-גליה</td><td>ד</td><td>22</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>אתי</td><td>ד</td><td>4</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>אתי/עינת</td><td>ד</td><td>10</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>גיל?</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>גלית ויפית </td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>זאן</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>זיו</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>חבר לכיתה</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>יוסי</td><td>ד</td><td>15</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>יוסי - נגרות</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>יוסי, נגרות</td><td>ד</td><td>7</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>לושה </td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>ליאורה</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>ליאורה כהן ממן</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>מיכל וסיון</td><td>ד</td><td>14</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>מיכל ושפרה</td><td>ד</td><td>4</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>מיכל, סיון</td><td>ד</td><td>5</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>סטודנטית</td><td>ד</td><td>12</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>סיון , מיכל</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>סיון ומיכל</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>סיון מיכל</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>סיון, מיכל</td><td>ד</td><td>5</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>עדי סטודנטית </td><td>ד</td><td>81346</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>עינת</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>ענת</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>ענת, בגני הנדיב</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>פרי </td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>רים אערידי</td><td>ד</td><td>4</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>רים וגליה</td><td>ד</td><td>3</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>רים-גליה</td><td>ד</td><td>12</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>רעות </td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>שאדן</td><td>ד</td><td>3</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>שי</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>שי משאש</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>שירלי</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>שלו</td><td>ד</td><td>4</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>שלו כיתה ו</td><td>ד</td><td>4</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>שלו, כיתה ו</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>שפרה</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>שפרה  ומיכל</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>שפרה ומיכל</td><td>ד</td><td>9</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>שרי</td><td>ד</td><td>16</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>שרי בריס</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, דרך למרחב פרדס חנה</td><td>תלמיד - אפיק</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, כפר מלל</td><td>איתן</td><td>ד</td><td>3</td></tr><tr><td>בית ספר בית אקשטיין, כפר מלל</td><td>חופית</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, כפר מלל</td><td>חזי</td><td>ד</td><td>4</td></tr><tr><td>בית ספר בית אקשטיין, כפר מלל</td><td>יונתן</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, כפר מלל</td><td>מכללת "בית ברל"</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, כפר מלל</td><td>מכללת בית -ברל</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, כפר מלל</td><td>נטע</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, כפר מלל</td><td>נטע ואושרת</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, כפר מלל</td><td>ניצן</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, כפר מלל</td><td>סטודנט</td><td>ד</td><td>3</td></tr><tr><td>בית ספר בית אקשטיין, כפר מלל</td><td>תמר</td><td>ד</td><td>3</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>אין מידע</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>אלכסנדרה קלוגרמן</td><td>ד</td><td>27</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>אנה ריבקין צמל</td><td>ד</td><td>8</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>גלית לבנה קיציס</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>גלית קיצים ליבנה</td><td>ד</td><td>18</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>גלית קיציס לבנה</td><td>ד</td><td>14</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>גלית קיציס ליבנה</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>דניאל עוזיה</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>ירון טשרמק</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>ליאור פראישטט</td><td>ד</td><td>4</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>ליאור פריישטט</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>מאיה הירש</td><td>ד</td><td>24</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>מורן יסכה פנחס</td><td>ד</td><td>3</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>מיכל גולדשטיין</td><td>ד</td><td>61</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>מירב זיידמן</td><td>ד</td><td>6</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>נחמה מוזס</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>סער קלמפרר</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>עדה היכט</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>עדה הכט</td><td>ד</td><td>5</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>רחלי לוין</td><td>ד</td><td>1</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>שלומית עטר</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>תמרה וורדי</td><td>ד</td><td>2</td></tr><tr><td>בית ספר בית אקשטיין, ראשון לציון</td><td>תמרה ורדי</td><td>ד</td><td>2</td></tr><tr><td>בית ספר ניסויי בית אקשטיין, קיבוץ גן שמואל</td><td>גלית גרודמן </td><td>ד</td><td>1</td></tr><tr><td>בית ספר ניסויי בית אקשטיין, קיבוץ גן שמואל</td><td>רז גלבר</td><td>ד</td><td>1</td></tr><tr><td>בית ספר תיכון בית אקשטיין, גבעתיים</td><td>אין מידע</td><td>ד</td><td>2</td></tr><tr><td>בית ספר תיכון בית אקשטיין, גבעתיים</td><td>אריאלה</td><td>ד</td><td>3</td></tr><tr><td>בית ספר תיכון בית אקשטיין, גבעתיים</td><td>אריאלה ברק</td><td>ד</td><td>1</td></tr><tr><td>בית ספר תיכון בית אקשטיין, גבעתיים</td><td>נועה עמנואל</td><td>ד</td><td>1</td></tr><tr><td>הוסטל בית אקשטיין, הגולשים אשדוד</td><td>אין מידע</td><td>ד</td><td>12</td></tr><tr><td>הוסטל בית אקשטיין, הנרקיסים הרצליה</td><td>אין מידע</td><td>ד</td><td>15</td></tr><tr><td>מערך דיור בית אקשטיין, אפקה וקרית אונו</td><td>אין מידע</td><td>ד</td><td>6</td></tr><tr><td>פנימיית בית אקשטיין, עציון פרדס חנה</td><td>אין מידע</td><td>ד</td><td>6</td></tr></tbody></table>';
+            var data ='@Html.Raw(ViewBag.currentDaySupportsHtmlTable)';
+            $("#TableDiv1").html('@Html.Raw(ViewBag.currentDaySupportsHtmlTable)').css('overflow-y','scroll');
+            $("#TableDiv3").html('@Html.Raw(ViewBag.AllSupports)').css('overflow-y','scroll');
+            $("#TableDiv1>table").addClass('table table-responsive table-hover table-condensed table-striped');
+            $("#TableDiv3>table").addClass('table table-responsive table-hover table-condensed table-striped');
+        });
+        $(function () {
+            var data = @Html.Raw(ViewBag.SupportersList);
+            var jsonResultData1 = ConvertJsonToTable(data, null, null, null);
+            $("#TableDiv2").html(jsonResultData1).css('overflow-y','scroll');
+            $("#TableDiv2>table").addClass('table table-responsive table-hover table-condensed table-striped');
+        });
+
+        $(function(){
+            alert('*******************************')
+            AddParamsToTable("#TableDiv1");
+        });
+        $("#Div1,#Div2,#Div3,#Div4,#Div5,#Div6,#Div7,#Div8").mousedown(function () {
+            var temp = "#" + $(this).attr("id");
+            if (source == "") {//if this is the first click ->real source
+                source = "#" + $(this).attr("id");
+            }
+            else if (source == temp)// if we pushed again on the same place
+            {
+                source = "";
+            }
+        });
+
+        //$(".supporter-action").hover(function(){
+        //    alert("hello");
+        //});
+
+
+    });
+</script>
+

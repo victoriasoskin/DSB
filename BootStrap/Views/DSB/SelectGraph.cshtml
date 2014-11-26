@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "SelectGraph";
+}
+
+<h2>SelectGraph</h2>
+<div class="jumbotron">
+    <div class="container">
+        <table>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                @Html.DropDownList("DDLPermisions", (SelectList)ViewBag.Permisions, new { id = "d", @class = "drop" })
+                            </td>
+                            <td>
+                                <input type="button" id="InsertBTN" value="אישור"/>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+</div>
+

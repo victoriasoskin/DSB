@@ -1,0 +1,186 @@
+﻿
+.col-md-4 {
+    background-color:  #5bc0de;
+    background-repeat: repeat;
+    height:350px;
+    width:350px;
+    border:1px solid #0c0b0b;
+    position:absolute;
+    clip:rect(5px 40px 40px 5px);
+   
+}
+.col-md-6 {
+    background-color:  #5bc0de;
+    background-image: linear-gradient(to bottom, rgba(30, 87, 153, 0.2) 0%, rgba(125, 185, 232, 0) 100%);
+    background-repeat: repeat;
+    border-color:black;
+    border:1px solid #0c0b0b;
+    height:410px;
+    width:500px;
+}
+.col-lg-6{
+    background-color:whitesmoke;
+    width:350px;
+    height:400px;
+    position:absolute;
+    overflow-y:scroll;
+    border:1px solid #0c0b0b;
+
+}
+
+
+.glyphicon {
+    position:absolute;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -moz-osx-font-smoothing: grayscale;
+
+}
+.glyphicon-chevron-left:before {
+  content: "\e079";
+}
+
+.glyphicon-chevron-right:before {
+  content: "\e080";
+  }
+
+.row {
+    padding:5px;
+    padding-right:2px;
+    padding-left:2px;
+}
+
+/*.jumbotron {
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 2.1428571435;
+    color: inherit;
+    background-color: white;
+}*/
+.LargeImage{
+    height:350px;
+    width:500px;
+    padding-bottom:5px;
+}
+.SmallImage{
+    height:200px;
+    width:300px;
+    padding-bottom:3px;
+}
+
+.glyphicon glyphicon-cog
+{
+    z-index:4;
+    position:absolute;
+    
+}
+
+#Reports{
+    background-color: #5bc0de;
+}
+
+#loadIndicator{
+    position:fixed;
+    top:50%;
+    left:50%;
+    z-index:9;
+    background: transparent url("~/Img/ajax-loader.gif");
+}
+.small{
+    height:300px;
+    width:300px;
+    position:relative;
+    left:0px;
+    top:0px;
+}
+.carousel-control {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  padding-top:100px;
+  left: 0;
+  width: 5%;
+  height:500px;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+#GridView1
+{
+    max-height:300px;
+    max-width:300px;
+    background-color:white;
+    position:relative;
+    font-size:x-small;
+    
+}
+Chart1{
+    position:absolute;
+}
+
+#ZoomDivContainer{
+    position:fixed;
+    top:10%;
+    left:20%;
+    z-index:10;
+    border:1px solid #0c0b0b;
+    height:620px;
+    width:820px;   
+}
+.btn-group{
+    position:fixed;
+    z-index:6;
+}
+#Zooming{
+    position:fixed;
+    top:10%;
+}
+
+#SupportersTable{
+    font-size:15px;
+    overflow-y:scroll;
+    overflow-y:scroll;
+    max-height:300px;
+}
+#SupportsOfTheCurrentDay
+{
+    font-size:15px;
+    overflow-y:scroll;
+    overflow-y:scroll;
+    max-height:300px;
+}
+.HeaderStyle
+{
+    font-weight:bold;
+    background-color:lightcyan;
+    
+}
+body{
+    
+}
+#Div4{
+    left:0px;
+    top:0px;
+}
+ 
+#selectedDataDiv {
+  background-color:white;
+    border-color:darkgrey;
+    border-width:1px;
+    font-size:small;
+    border-style:solid;
+    font-style:
+}
+
+

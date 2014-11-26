@@ -1,0 +1,113 @@
+﻿@model IEnumerable<BootStrap.Models.DataSelection>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<input type="button" onclick="$('#ChartDisplay').load('grf.aspx?id=3');" />
+<div class="jumbotron">
+    <div class="container">
+
+        <table>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                @Html.DropDownList("DDLPermisions", (SelectList)ViewBag.Permisions, "בחר דוח",new { id = "DivId", @class = "drop"})
+                            </td>
+                            <td>
+                                
+                                <input class="btn btn-default"  type="button" id="InsertBTN" value="אישור" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <div id="ChartDisplay">
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+      
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        var selected;
+
+
+        $("#DivId").on('change', function () {
+
+            var id = $(this).val();
+            var DivIdRes= @ViewBag.DivID
+            selected = id;
+            resultObject = {
+                DataIdRes: id,
+                DivId:DivIdRes 
+            };    
+            $('#ChartDisplay').load('grf.aspx?id=' + id);
+        });
+
+        $('#InsertBTN').on('click',function() {
+                $.ajax({                
+                    type: "POST",
+                    data: resultObject,
+                    url: '/DSB/DataSelect/',
+                    success: function (result) {
+                        alert(result);
+                        $.each(result, function (key, item) {                        
+                        }
+                    )
+                    },
+                    error: function (result) {
+                        alert("Couldn't load the Chart !");
+                    },
+                    dataType: "json",
+                    contsentType: "application/json"
+                });
+        });
+    });
+</script>
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DivId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DivName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DivId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DivName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>*@
